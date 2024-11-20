@@ -138,7 +138,6 @@ nnoremap j jzz
 nnoremap <Space> za
 nnoremap <C-p> "+P
 vnoremap <C-c> "+y
-nmap <S-f> :setlocal foldmethod=indent<CR>
 
 " NERDTree specific mappings.
 " Map the F5 key to toggle NERDTree open and close.
@@ -155,10 +154,25 @@ map <Leader>nc :NERDTreeClose<CR>
 " Have nerdtree ignore certain files and directories.
 let NERDTreeIgnore=['\.git$', '\.mp4$', '\.ogg$', '\.iso$', '\.pyc$', '\.odt$', '\.db$']
 
-inoremap <Space><Space> <Esc>/<++><CR>"_c4l
 inoremap `` $<++>$ <++>
 
+map <space><space> <Esc>/<++><CR>*_c4l
+imap <leader>ph <++><Esc>
 
+vmap <leader>( c()<Esc>hp
+vmap <leader>[ c[]<Esc>hp
+vmap <leader>{ c{}<Esc>hp
+" vmap <leader>" c""<Esc>hp
+vmap <leader>' c''<Esc>hp
+vmap <leader>` c``<Esc>hp
+inoremap ` ``<left>
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
 " }}}
 
 
@@ -197,7 +211,7 @@ set background=dark
 colorscheme gruvbox
 set cursorline cursorcolumn
 
-set rtp+=/opt/homebrew/opt/fzf
+"set rtp+=/opt/homebrew/opt/fzf
 
 "set guicursor=n-v-c:block-Cursor
 "set guicursor+=i:ver100-iCursor
@@ -210,20 +224,4 @@ if !has("gui_running")
     autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 endif
 let g:nerdtree_tabs_open_on_gui_startup = 0
-map <space><space> <Esc>/<++><CR>*_c4l
-imap <leader>ph <++><Esc>
 
-vmap <leader>( c()<Esc>hp
-vmap <leader>[ c[]<Esc>hp
-vmap <leader>{ c{}<Esc>hp
-vmap <leader>" c""<Esc>hp
-vmap <leader>' c''<Esc>hp
-vmap <leader>` c``<Esc>hp
-inoremap ` ``<left>
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O

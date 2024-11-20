@@ -68,6 +68,8 @@
     interactiveShellInit = ''
       fish_vi_key_bindings
     '';
+    functions = {
+    };
   };
 
   # kitty setup
@@ -82,7 +84,6 @@
     userName = "Kimang18";
     userEmail = "allenkhun22@gmail.com";
     ignores = [ ".DS_Store" ];
-    defaultBranch = "main";
   };
 
   # aerospace setup
