@@ -1,0 +1,229 @@
+set encoding=utf-8
+set termguicolors
+set mouse=a
+set nowritebackup
+set updatetime=1000
+"set macligatures
+set guifont=FiraCode\ Nerd\ Font\ Mono
+set cindent
+set splitbelow splitright
+set lbr "display whole word when line break
+
+" Disable compatibility with vi which can cause unexpected issues.
+set nocompatible
+
+" Enable type file detection. Vim will be able to try to detect the type of file in use.
+filetype on
+
+" Enable plugins and load plugin for the detected file type.
+filetype plugin on
+
+" Load an indent file for the detected file type.
+filetype indent on
+
+set autoindent
+
+" Turn syntax highlighting on.
+syntax on
+
+" Add numbers to each line on the left-hand side.
+set number
+set relativenumber
+
+" Highlight cursor line underneath the cursor horizontally.
+"set cursorline
+
+" Highlight cursor line underneath the cursor vertically.
+"set cursorcolumn
+
+" Set shift width to 4 spaces.
+set shiftwidth=4
+set shiftround
+
+" Set tab width to 4 columns.
+set tabstop=4
+
+set backspace=indent,eol,start
+
+" Use space characters instead of tabs.
+set expandtab
+
+" Do not wrap lines. Allow long lines to extend as far as the line goes.
+" set wrap
+set wrap
+
+set ruler
+
+" While searching though a file incrementally highlight matching characters as
+" you type.
+set incsearch
+"set hlsearch
+
+" Ignore capital letters during search.
+set ignorecase
+
+" Override the ignorecase option if searching for capital letters.
+" This will allow you to search specifically for capital letters.
+set smartcase
+
+" Show matching words during a search.
+set showmatch
+
+" Show the mode you are on the last line.
+set showmode
+
+" Enable auto completion menu after pressing TAB.
+set wildmenu
+
+" Make wildmenu behave like similar to Bash completion.
+set wildmode=list:longest
+
+" There are certain files that we would never want to edit with Vim.
+" Wildmenu will ignore files with these extensions.
+set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+"open pdf with zathura
+autocmd BufRead *.pdf,*.djvu sil exe "!zathura " . shellescape(expand("%:p")) . " &" | bd | let &ft=&ft
+"open some files with default applciation
+autocmd BufRead *.jpg,*.png,*.gif sil exe "!open -a Preview " . shellescape(expand("%:p")) . " &" | bd | let &ft=&ft
+
+map <F6> :setlocal spell! spelllang=en_us<CR>
+"Theme Config
+""" Use red underline for spell check.
+augroup my_colours
+    autocmd!
+    autocmd ColorScheme gruvbox hi SpellBad cterm=underline,bold ctermfg=cyan
+    autocmd ColorScheme gruvbox hi SpellCap cterm=underline,bold ctermfg=yellow
+augroup END
+
+let mapleader=","
+let maplocalleader=","
+
+" This will enable code folding.
+" " Use the marker method of folding.
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
+
+" jump to the last cursor position
+if has("autocmd")
+    augroup redhat
+        autocmd!
+        " When editing a file, always jump to the last cursor position
+        autocmd BufReadPost *
+        \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+        \   exe "normal! g'\"" |
+        \ endif
+    augroup END
+endif
+
+
+" MAPPINGS ---------------------------- {{{
+
+" You can split the window in Vim by typing :split or :vsplit.
+
+" Remap moving among panes
+let g:Ctrl_j = 'off'
+"map <C-j> <C-W>j
+map <Leader>j <C-W>j
+"map <C-k> <C-W>k
+map <Leader>k <C-W>k
+"map <C-h> <C-W>h
+map <Leader>h <C-W>h
+"map <C-l> <C-W>l
+map <Leader>l <C-W>l
+
+nnoremap k kzz
+nnoremap j jzz
+nnoremap <Space> za
+nnoremap <C-p> "+P
+vnoremap <C-c> "+y
+nmap <S-f> :setlocal foldmethod=indent<CR>
+
+" NERDTree specific mappings.
+" Map the F5 key to toggle NERDTree open and close.
+map <F5> :NERDTreeToggle<CR>
+" Toggle NERDTree
+"map <C-n> :NERDTreeMirrorToggle<CR>
+map <Leader>nt <plug>NERDTreeMirrorToggle<CR>
+" Find currently opened file and select it
+map <Leader>nf :NERDTreeTabsFind<CR>
+" Open NERDTree in the current working directory
+map <Leader>no :NERDTreeCWD<CR>
+map <Leader>nc :NERDTreeClose<CR>
+
+" Have nerdtree ignore certain files and directories.
+let NERDTreeIgnore=['\.git$', '\.mp4$', '\.ogg$', '\.iso$', '\.pyc$', '\.odt$', '\.db$']
+
+inoremap <Space><Space> <Esc>/<++><CR>"_c4l
+inoremap `` $<++>$ <++>
+
+
+" }}}
+
+
+" AIRLINE ---------------------------- {{{
+let g:airline_left_alt_sep = '' 
+let g:airline_right_sep = '' 
+let g:airline_right_alt_sep = '' 
+let g:airline_symbols = {}
+" let g:airline_symbols.branch = ''                                             
+let g:airline_symbols.branch = '\uE0A0'                                             
+" let g:airline_symbols.readonly = ''                                           
+let g:airline_symbols.readonly = '\uE0A2'                                           
+" let g:airline_symbols.linenr = ''
+let g:airline_symbols.linenr = '\uE0A1'
+let g:airline_section_b = '%{strftime("%H:%M")}' " add time
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#enabled = 1
+
+" Switch to the tab with the given number using the <Leader-number> shortcut
+nmap <Leader>1 <Plug>AirlineSelectTab1
+nmap <Leader>2 <Plug>AirlineSelectTab2
+nmap <Leader>3 <Plug>AirlineSelectTab3
+nmap <Leader>4 <Plug>AirlineSelectTab4
+nmap <Leader>5 <Plug>AirlineSelectTab5
+nmap <Leader>6 <Plug>AirlineSelectTab6
+nmap <Leader>7 <Plug>AirlineSelectTab7
+nmap <Leader>8 <Plug>AirlineSelectTab8
+nmap <Leader>9 <Plug>AirlineSelectTab9
+
+" }}}
+
+
+"let g:gruvbox_termcolors=16
+set background=dark
+"set background=light
+colorscheme gruvbox
+set cursorline cursorcolumn
+
+set rtp+=/opt/homebrew/opt/fzf
+
+"set guicursor=n-v-c:block-Cursor
+"set guicursor+=i:ver100-iCursor
+"set guicursor+=n-v-c:blinkon1
+"set guicursor+=i:blinkwait10
+
+"open nerdtree when open vim without specified file
+if !has("gui_running")
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+endif
+let g:nerdtree_tabs_open_on_gui_startup = 0
+map <space><space> <Esc>/<++><CR>*_c4l
+imap <leader>ph <++><Esc>
+
+vmap <leader>( c()<Esc>hp
+vmap <leader>[ c[]<Esc>hp
+vmap <leader>{ c{}<Esc>hp
+vmap <leader>" c""<Esc>hp
+vmap <leader>' c''<Esc>hp
+vmap <leader>` c``<Esc>hp
+inoremap ` ``<left>
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
