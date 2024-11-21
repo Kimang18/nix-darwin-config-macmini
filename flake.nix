@@ -8,10 +8,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
-	home-manager = {
-		url = "github:nix-community/home-manager";
-    	inputs.nixpkgs.follows = "nixpkgs";
-	};
+      home-manager = {
+        url = "github:nix-community/home-manager";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
   };
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager }:
@@ -21,12 +21,14 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs; [
+        fzf
         fish
+        neovim
         vim
         tmux
-	    kitty
+	kitty
         poetry
-	    mkalias
+	mkalias
       ];
 
       #environment.variables = {
@@ -39,30 +41,30 @@
 
       homebrew = {
         enable = true;
-		casks = [
-	  		"hammerspoon"
-	  		"autodesk-fusion"
-            "aerospace"
-            "the-unarchiver"
-            "vlc"
-		];
+	casks = [
+	  "hammerspoon"
+	  "autodesk-fusion"
+          "aerospace"
+          "the-unarchiver"
+          "vlc"
+	];
         masApps = {
           "Vimari" = 1480933944;
           "Menu Bar Calendar" = 1558360383;
           "MonitorControlLite" = 1595464182;
         };
-		onActivation.cleanup = "zap";
-		onActivation.autoUpdate = false;
-		onActivation.upgrade = false;
+	onActivation.cleanup = "zap";
+	onActivation.autoUpdate = false;
+	onActivation.upgrade = false;
       };
 
       # configure to allow search for applications installed by Nix
       system.activationScripts.applications.text = let
       	env = pkgs.buildEnv {
-	  	name = "system-applications";
-	  	paths = config.environment.systemPackages;
-	  	pathsToLink = "/Applications";
-		};
+	  name = "system-applications";
+	  paths = config.environment.systemPackages;
+	  pathsToLink = "/Applications";
+	};
       in
       	pkgs.lib.mkForce ''
         # Set up applications.
@@ -82,30 +84,31 @@
           # auto show and hide dock
           autohide = true;
           # remove delay for showing dock
-	      autohide-delay = 0.0;
-	      # how fast is the dock showing animation
-	      autohide-time-modifier = 0.2;
-	      expose-animation-duration = 0.2;
-	      launchanim = false;
-	      showhidden = true;
-	      show-recents = false;
-	      show-process-indicators = true;
-	      orientation = "left";
-	      mru-spaces = false;
-	      persistent-apps = [
-	        "${pkgs.kitty}/Applications/Kitty.app"
-	        "/Applications/Safari.app"
-	        "/System/Applications/Launchpad.app"
-	        "/System/Applications/Calendar.app"
-	        "/System/Applications/Mail.app"
-	      ];
+	    autohide-delay = 0.0;
+	    # how fast is the dock showing animation
+	    autohide-time-modifier = 0.2;
+	    expose-animation-duration = 0.2;
+	    launchanim = false;
+	    showhidden = true;
+	    show-recents = false;
+	    show-process-indicators = true;
+	    orientation = "left";
+	    mru-spaces = false;
+	    persistent-apps = [
+	      "${pkgs.kitty}/Applications/Kitty.app"
+	      "/Applications/Safari.app"
+	      "/System/Applications/Launchpad.app"
+	      "/System/Applications/Calendar.app"
+	      "/System/Applications/Mail.app"
+	    ];
+          wvous-br-corner = 10;
         };
-	    finder = {
-	      FXPreferredViewStyle = "clmv";
-	      AppleShowAllExtensions = true;
+	finder = {
+	  FXPreferredViewStyle = "clmv";
+	  AppleShowAllExtensions = true;
           ShowPathbar = true;
           ShowStatusBar = true;
-	    };
+	};
         magicmouse.MouseButtonMode = "TwoButton";
         menuExtraClock = {
           Show24Hour = true;
@@ -123,9 +126,14 @@
         };
         WindowManager.GloballyEnabled = false;
         #universalaccess.reduceMotion = true;
-	  loginwindow.GuestEnabled = false;
-	  screencapture.location = "~/Pictures/screenshots";
-	  screensaver.askForPasswordDelay = 10;
+        controlcenter = {
+          Bluetooth = true;
+          Display = true;
+          Sound = true;
+        };
+	loginwindow.GuestEnabled = false;
+	screencapture.location = "~/Pictures/screenshots";
+	screensaver.askForPasswordDelay = 10;
 
       };
       # Necessary for using flakes on this system.
@@ -157,21 +165,21 @@
     darwinConfigurations."macmini" = nix-darwin.lib.darwinSystem {
       modules = [
         configuration
-		home-manager.darwinModules.home-manager {
-			home-manager.useGlobalPkgs = true;
-			home-manager.useUserPackages = true;
-			home-manager.verbose = true;
-			home-manager.users.kimangkhun = import ./home.nix;
-		}
-		nix-homebrew.darwinModules.nix-homebrew {
-			nix-homebrew = {
-		    	enable = true;
-		    	# Apple Silicon only
-		    	enableRosetta = true;
-		    	# User owning the Homebrew prefix
-		    	user = "kimangkhun";
-			};
-		}
+	  home-manager.darwinModules.home-manager {
+	    home-manager.useGlobalPkgs = true;
+	    home-manager.useUserPackages = true;
+	    home-manager.verbose = true;
+	    home-manager.users.kimangkhun = import ./home.nix;
+	  }
+	  nix-homebrew.darwinModules.nix-homebrew {
+	    nix-homebrew = {
+	      enable = true;
+	      # Apple Silicon only
+	      enableRosetta = true;
+	      # User owning the Homebrew prefix
+	      user = "kimangkhun";
+	    };
+	  }
       ];
     };
 

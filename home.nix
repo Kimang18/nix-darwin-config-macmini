@@ -30,6 +30,7 @@
   #  enable = true;
   #  extraConfig = builtins.readFile(./init.lua);
   #};
+  programs.neovim.enable = true;
 
   # tmux setup
   programs.tmux = {
@@ -46,6 +47,10 @@
       set-option -g prefix C-q
       unbind-key C-q
       bind-key C-q send-prefix
+      bind -n M-Left select-pane -L
+      bind -n M-Right select-pane -R
+      bind -n M-Up select-pane -U
+      bind -n M-Down select-pane -D
       bind-key v split-window -h
       bind-key h split-window -v
       set -g mouse on
@@ -62,8 +67,10 @@
     enable = true;
     shellAliases = {
       cfg-vim = "vim ~/nix/vim_configuration";
+      cfg-nvim = "nvim ~/nix/init.lua";
       cfg-tmux = "vim ~/nix/home.nix";
       cfg-kit = "vim ~/nix/kitty_configuration";
+      god = ''cd "$(find ~/Documents ~/Downloads ~/Desktop ~/Movies ~/Music ~/Pictures -type d | fzf --height 40% --color 'border:#ffa07a,info:#ffff00' --border )"'';
     };
     interactiveShellInit = ''
       fish_vi_key_bindings
@@ -87,5 +94,12 @@
   };
 
   # aerospace setup
-  home.file.".aerospace.toml".source = ./aerospace_configuration;
+  home.file = {
+    ".aerospace.toml".source = ./aerospace_configuration;
+    ".config/kitty/gruvbox_cs/gruvbox_dark.conf".source = ./kitty/gruvbox_cs/gruvbox_dark.conf;
+    ".config/kitty/gruvbox_cs/gruvbox_light.conf".source = ./kitty/gruvbox_cs/gruvbox_light.conf;
+    ".config/kitty/tokyonight_night.conf".source = ./kitty/tokyonight_night.conf;
+    ".config/fish/functions/fish_prompt.fish".source = ./fish_prompt.fish;
+    ".config/nvim/init.lua".source = ./init.lua;
+  };
 }

@@ -50,5 +50,6 @@ map cmd+t new_tab
 map cmd+c        copy_to_clipboard
 map cmd+v        paste_from_clipboard
 
-include ~/nix/kitty/gruvbox_cs/gruvbox_dark.conf
-#include ~/nix/kitty/gruvbox_cs/gruvbox_light.conf
+#include ~/.config/kitty/gruvbox_cs/gruvbox_dark.conf
+#include ~/.config/kitty/gruvbox_cs/gruvbox_light.conf
+include ~/.config/kitty/tokyonight_night.conf
