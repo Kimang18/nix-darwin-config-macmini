@@ -233,6 +233,7 @@ require("lazy").setup({
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 	"tpope/vim-dadbod", -- Detect tabstop and shiftwidth automatically
 	"preservim/nerdtree", -- Detect tabstop and shiftwidth automatically
+	"ryanoasis/vim-devicons",
 
 	-- NOTE: Plugins can also be added by using a table,
 	-- with the first argument being the link and the following
@@ -967,15 +968,14 @@ require("lazy").setup({
 	-- { import = 'custom.plugins' },
 
 	-- add airline theme
-	{
-		"vim-airline/vim-airline",
-		lazy = false,
-		priority = 1000,
-		dependencies = {
-			"vim-airline/vim-airline-themes",
-			"ryanoasis/vim-devicons",
-		},
-	},
+	-- {
+	-- 	"vim-airline/vim-airline",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	dependencies = {
+	-- 		"vim-airline/vim-airline-themes",
+	-- 	},
+	-- },
 }, {
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the

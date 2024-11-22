@@ -21,6 +21,7 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs; [
+	htop
         fzf
         fish
         neovim
@@ -47,6 +48,7 @@
           "aerospace"
           "the-unarchiver"
           "vlc"
+	  "bambu-studio"
 	];
         masApps = {
           "Vimari" = 1480933944;
@@ -54,8 +56,8 @@
           "MonitorControlLite" = 1595464182;
         };
 	onActivation.cleanup = "zap";
-	onActivation.autoUpdate = false;
-	onActivation.upgrade = false;
+	onActivation.autoUpdate = true;
+	onActivation.upgrade = true;
       };
 
       # configure to allow search for applications installed by Nix

@@ -38,6 +38,7 @@ outer.bottom = 6
 # Launch applications
 alt-shift-n = 'exec-and-forget open -a /Applications/Nix\ Apps/kitty.app'
 alt-shift-y = 'exec-and-forget open -a /System/Applications/Launchpad.app'
+alt-shift-b = 'exec-and-forget open -a /Applications/Safari.app'
 
 # Window management
 alt-r = 'layout tiles horizontal vertical'
