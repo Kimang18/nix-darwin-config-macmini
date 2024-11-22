@@ -70,7 +70,7 @@
       cfg-nvim = "nvim ~/nix/init.lua";
       cfg-tmux = "vim ~/nix/home.nix";
       cfg-kit = "vim ~/nix/kitty_configuration";
-      god = ''cd "$(find ~/Documents ~/Downloads ~/Desktop ~/Movies ~/Music ~/Pictures -type d | fzf --height 40% --color 'border:#ffa07a,info:#ffff00' --border )"'';
+      god = ''cd "$(find /Volumes/Archived/ ~/Documents ~/Downloads ~/Desktop ~/Movies ~/Music ~/Pictures -type d | fzf --height 40% --color 'border:#ffa07a,info:#ffff00' --border )"'';
     };
     interactiveShellInit = ''
       fish_vi_key_bindings
