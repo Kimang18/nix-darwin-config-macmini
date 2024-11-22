@@ -66,7 +66,7 @@ alt-tab = 'workspace-back-and-forth'
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # Toggle floating/tiling layout
-alt-t = ['layout floating tiling', 'mode main']
+#alt-t = ['layout floating tiling', 'mode main']
 
 # Workspaces management
 alt-1 = 'workspace 1'
@@ -74,10 +74,18 @@ alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
 alt-5 = 'workspace 5'
+alt-t = 'workspace t'
 
 # Move windows to workspaces
-alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
-alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
-alt-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
-alt-shift-4 = ['move-node-to-workspace 4', 'workspace 4']
-alt-shift-5 = ['move-node-to-workspace 5', 'workspace 5']
+alt-shift-1 = ['move-node-to-workspace 1']
+alt-shift-2 = ['move-node-to-workspace 2']
+alt-shift-3 = ['move-node-to-workspace 3']
+alt-shift-4 = ['move-node-to-workspace 4']
+alt-shift-5 = ['move-node-to-workspace 5']
+alt-shift-t = ['move-node-to-workspace t']
+
+# Window detection rules
+[[on-window-detected]]
+if.app-id = 'net.kovidgoyal.kitty'
+run = 'move-node-to-workspace t'
+#alt-shift-t = ['move-node-to-workspace t', 'workspace t']
