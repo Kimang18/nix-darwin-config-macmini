@@ -43,7 +43,6 @@
       homebrew = {
         enable = true;
 	casks = [
-	  "hammerspoon"
 	  "autodesk-fusion"
           "aerospace"
           "the-unarchiver"
@@ -56,8 +55,8 @@
           "MonitorControlLite" = 1595464182;
         };
 	onActivation.cleanup = "zap";
-	onActivation.autoUpdate = true;
-	onActivation.upgrade = true;
+	onActivation.autoUpdate = false;
+	onActivation.upgrade = false;
       };
 
       # configure to allow search for applications installed by Nix
@@ -81,6 +80,9 @@
 	    done
         '';
 
+      # disable computer sleeping
+      power.sleep.computer = "never";
+
       system.defaults = {
         dock = {
           # auto show and hide dock
@@ -99,6 +101,7 @@
 	    persistent-apps = [
 	      "${pkgs.kitty}/Applications/Kitty.app"
 	      "/Applications/Safari.app"
+	      "/Applications/BambuStudio.app"
 	      "/System/Applications/Launchpad.app"
 	      "/System/Applications/Calendar.app"
 	      "/System/Applications/Mail.app"

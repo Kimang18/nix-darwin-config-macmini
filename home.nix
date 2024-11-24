@@ -53,6 +53,7 @@
       bind -n M-Down select-pane -D
       bind-key v split-window -h
       bind-key h split-window -v
+      bind-key u split-window "aerospace focus --window-id $(aerospace list-windows --all | fzf --height 40% --color 'border:#ffa07a,info:#ffff00' --border | cut -d'|' -f1 | tr -d '[:blank:]')"
       set -g mouse on
       bind -n S-Left previous-window
       bind -n S-Right next-window
