@@ -36,9 +36,11 @@ outer.bottom = 6
 [mode.main.binding]
 
 # Launch applications
-alt-shift-n = 'exec-and-forget open -a /Applications/Nix\ Apps/kitty.app'
+alt-shift-n = ['exec-and-forget open -a /Applications/Nix\ Apps/kitty.app']
 alt-shift-y = 'exec-and-forget open -a /System/Applications/Launchpad.app'
 alt-shift-b = 'exec-and-forget open -a /Applications/Safari.app'
+
+alt-shift-enter = 'mode app'
 
 # Window management
 alt-r = 'layout tiles horizontal vertical'
@@ -74,7 +76,8 @@ alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
 alt-5 = 'workspace 5'
-alt-t = 'workspace t'
+alt-t = 'workspace T'
+alt-b = 'workspace B'
 
 # Move windows to workspaces
 alt-shift-1 = ['move-node-to-workspace 1']
@@ -82,10 +85,26 @@ alt-shift-2 = ['move-node-to-workspace 2']
 alt-shift-3 = ['move-node-to-workspace 3']
 alt-shift-4 = ['move-node-to-workspace 4']
 alt-shift-5 = ['move-node-to-workspace 5']
-alt-shift-t = ['move-node-to-workspace t']
+alt-shift-t = ['move-node-to-workspace T']
+
+# Setting for app mode
+[mode.app.binding]
+alt-t = ['exec-and-forget open -a /Applications/Nix\ Apps/kitty.app', 'mode main']
 
 # Window detection rules
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
-run = 'move-node-to-workspace t'
+run = 'move-node-to-workspace T'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Safari'
+run = 'move-node-to-workspace B'
+
+[[on-window-detected]]
+if.app-id = 'com.bambulab.bambu-studio'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'com.autodesk.fusion360'
+run = 'move-node-to-workspace 3'
 #alt-shift-t = ['move-node-to-workspace t', 'workspace t']
