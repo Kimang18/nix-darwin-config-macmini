@@ -48,6 +48,7 @@
           "the-unarchiver"
           "vlc"
 	  "bambu-studio"
+	  "webtorrent"
 	];
         masApps = {
           "Vimari" = 1480933944;
@@ -55,8 +56,8 @@
           "MonitorControlLite" = 1595464182;
         };
 	onActivation.cleanup = "zap";
-	onActivation.autoUpdate = false;
-	onActivation.upgrade = false;
+	onActivation.autoUpdate = true;
+	onActivation.upgrade = true;
       };
 
       # configure to allow search for applications installed by Nix
