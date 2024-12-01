@@ -45,7 +45,7 @@
         enable = true;
 	casks = [
 	  "autodesk-fusion"
-          "aerospace"
+          "nikitabobko/tap/aerospace"
           "the-unarchiver"
           "vlc"
 	  "bambu-studio"
