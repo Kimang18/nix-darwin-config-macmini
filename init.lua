@@ -976,6 +976,15 @@ require("lazy").setup({
 	-- 		"vim-airline/vim-airline-themes",
 	-- 	},
 	-- },
+	-- add Markdown preview plugin by nvim
+	{
+		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		ft = { "markdown" },
+		build = function()
+			vim.fn["mkdp#util#install"]()
+		end,
+	},
 }, {
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the
