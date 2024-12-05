@@ -104,6 +104,11 @@ run = 'move-node-to-workspace B'
 if.app-id = 'com.bambulab.bambu-studio'
 run = 'move-node-to-workspace 3'
 
+[[on-window-detected]]
+if.app-id = 'com.apple.ScreenSharing'
+run = 'layout floating'
+
+
 # [[on-window-detected]]
 # if.app-id = 'com.autodesk.fusion360'
 # run = 'move-node-to-workspace 3'
