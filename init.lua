@@ -854,7 +854,10 @@ require("lazy").setup({
 			-- Load the colorscheme here.
 			-- Like many other themes, this one has different styles, and you could load
 			-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-			vim.cmd.colorscheme("tokyonight-night")
+			-- vim.cmd.colorscheme("tokyonight-night")
+
+			vim.o.background = "dark"
+			vim.cmd.colorscheme("gruvbox")
 
 			-- You can configure highlights by doing something like:
 			vim.cmd.hi("Comment gui=none")
@@ -983,6 +986,12 @@ require("lazy").setup({
 		ft = { "markdown" },
 		build = ":call mkdp#util#install()",
 	},
+	{
+		"ellisonleao/gruvbox.nvim",
+		priority = 1000,
+		config = true,
+		opts = ...,
+	},
 }, {
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -1007,6 +1016,11 @@ require("lazy").setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+vim.wo.relativenumber = true
+vim.o.ts = 2
+vim.o.sw = 2
+vim.o.sts = 2
+
 -- Custom keybinding
 vim.keymap.set("n", "<leader>no", ":NERDTreeToggle<CR>", { desc = "Toggle NERDTree" })
 vim.keymap.set("n", "<leader>nc", ":NERDTreeClose<CR>", { desc = "Close NERDTree" })
