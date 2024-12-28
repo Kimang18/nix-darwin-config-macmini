@@ -94,7 +94,7 @@
     ignores = [ ".DS_Store" ];
   };
 
-  # aerospace setup
+  # config file setup
   home.file = {
     ".aerospace.toml".source = ./aerospace_configuration;
     ".config/kitty/gruvbox_cs/gruvbox_dark.conf".source = ./kitty/gruvbox_cs/gruvbox_dark.conf;
@@ -102,5 +102,6 @@
     ".config/kitty/tokyonight_night.conf".source = ./kitty/tokyonight_night.conf;
     ".config/fish/functions/fish_prompt.fish".source = ./fish_prompt.fish;
     ".config/nvim/init.lua".source = ./init.lua;
+    ".config/ghostty/config".source = ./ghostty.conf;
   };
 }

@@ -50,7 +50,8 @@
           "the-unarchiver"
           "vlc"
 	  "bambu-studio"
-	  "webtorrent"
+	    #"webtorrent"
+	  "ghostty"
 	];
         masApps = {
           "Vimari" = 1480933944;
