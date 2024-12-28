@@ -186,10 +186,18 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
+-- Normal mode
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+
+-- Terminal mode
+vim.keymap.set("t", "<esc>", "<C-\\><C-N>", { desc = "Exist to Normal mode in Terminal mode" })
+vim.keymap.set("t", "<C-h>", "<C-\\><C-N><C-w><C-h>", { desc = "Move focus to the left window" })
+vim.keymap.set("t", "<C-l>", "<C-\\><C-N><C-w><C-l>", { desc = "Move focus to the right window" })
+vim.keymap.set("t", "<C-j>", "<C-\\><C-N><C-w><C-j>", { desc = "Move focus to the lower window" })
+vim.keymap.set("t", "<C-k>", "<C-\\><C-N><C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -996,6 +1004,7 @@ require("lazy").setup({
 		"hkupty/iron.nvim",
 		config = function(plugins, opts)
 			local iron = require("iron.core")
+			local view = require("iron.view")
 
 			iron.setup({
 				config = {
@@ -1006,19 +1015,21 @@ require("lazy").setup({
 						python = {
 							-- Can be a table or a function that
 							-- returns a table (see below)
-							command = { "poetry", "run", "ipython" },
+							command = { "poetry", "run", "ipython", "--no-autoindent" },
+							format = require("iron.fts.common").bracketed_paste_python,
 						},
 					},
 					-- How the repl window will be displayed
 					-- See below for more information
-					repl_open_cmd = require("iron.view").right(100),
+					-- repl_open_cmd = require("iron.view").right(120),
+					repl_open_cmd = view.split.vertical.botright(0.5),
 				},
 				-- Iron doesn't set keymaps by default anymore.
 				-- You can set them here or manually add keymaps to the functions in iron.core
 				keymaps = {
 					send_motion = "<space>rc",
 					visual_send = "<space>rc",
-					send_file = "<space>rf",
+					send_file = "<space>rF",
 					send_line = "<space>rl",
 					send_mark = "<space>rm",
 					mark_motion = "<space>rmc",
@@ -1040,7 +1051,7 @@ require("lazy").setup({
 			-- iron also has a list of commands, see :h iron-commands for all available commands
 			vim.keymap.set("n", "<space>rs", "<cmd>IronRepl<cr>")
 			vim.keymap.set("n", "<space>rr", "<cmd>IronRestart<cr>")
-			vim.keymap.set("n", "<space>rF", "<cmd>IronFocus<cr>")
+			vim.keymap.set("n", "<space>rf", "<cmd>IronFocus<cr>")
 			vim.keymap.set("n", "<space>rh", "<cmd>IronHide<cr>")
 		end,
 	},
