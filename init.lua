@@ -267,6 +267,7 @@ require("lazy").setup({
 
 	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
 		"lewis6991/gitsigns.nvim",
+		vim.keymap.set("n", "<Leader>hp", ":Gitsigns preview_hunk<CR>"),
 		opts = {
 			signs = {
 				add = { text = "+" },
@@ -488,6 +489,9 @@ require("lazy").setup({
 
 			-- Allows extra capabilities provided by nvim-cmp
 			"hrsh7th/cmp-nvim-lsp",
+		},
+		opts = {
+			autoformat = false,
 		},
 		config = function()
 			-- Brief aside: **What is LSP?**

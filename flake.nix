@@ -32,6 +32,7 @@
 	kitty
         poetry
 	mkalias
+	ffmpeg
       ];
 
       #environment.variables = {
@@ -44,6 +45,9 @@
 
       homebrew = {
         enable = true;
+	brews = [
+	  "portaudio"
+	];
 	casks = [
 	  "autodesk-fusion"
           "nikitabobko/tap/aerospace"
@@ -110,7 +114,8 @@
 	      "/System/Applications/Calendar.app"
 	      "/System/Applications/Mail.app"
 	    ];
-          wvous-br-corner = 10;
+          wvous-br-corner = 1; # hot corner bottom right to sleep
+          wvous-tr-corner = 2; # hot corner top right to mission
         };
 	finder = {
 	  FXPreferredViewStyle = "clmv";
