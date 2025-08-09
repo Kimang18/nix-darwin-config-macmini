@@ -43,6 +43,8 @@
       vim-tmux-navigator
       #sensible
       catppuccin
+      resurrect
+      continuum
     ];
     terminal = "screen-256color";
     extraConfig = ''
@@ -61,8 +63,10 @@
       set -g mouse on
       bind -n S-Left previous-window
       bind -n S-Right next-window
-      set -g @catppuccin_window_tabs_enabled on
       set -g renumber-windows on
+      set -g @continuum-restore 'on'
+      set -g @resurrect-strategy-nvim 'session'
+      set -g @catppuccin_window_tabs_enabled on
       set -g @catppuccin_window_left_separator ""
       set -g @catppuccin_window_right_separator " "
       set -g @catppuccin_window_middle_separator " █"

@@ -871,12 +871,13 @@ require("lazy").setup({
 			-- vim.cmd.colorscheme("tokyonight-night")
 
 			-- vim.o.background = "dark"
-			vim.cmd.colorscheme("gruvbox")
+			-- vim.cmd.colorscheme("gruvbox")
 
 			-- You can configure highlights by doing something like:
 			vim.cmd.hi("Comment gui=none")
 		end,
 	},
+	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
 	-- Highlight todo, notes, etc in comments
 	{
@@ -1158,6 +1159,8 @@ vim.keymap.set("n", "<leader>nc", ":NERDTreeClose<CR>", { desc = "Close NERDTree
 vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to system clipboard" })
 vim.keymap.set("n", "<C-p>", '"+p', { desc = "Paste from system clipboard" })
 vim.keymap.set("n", "<C-P>", '"+P', { desc = "Paste from system clipboard" })
+
+vim.cmd.colorscheme("catppuccin")
 
 -- Open pdf with Preview
 vim.api.nvim_create_autocmd("BufReadCmd", {
