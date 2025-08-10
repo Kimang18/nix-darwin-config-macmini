@@ -239,8 +239,8 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	-- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
-	"tpope/vim-dadbod", -- Detect tabstop and shiftwidth automatically
-	"preservim/nerdtree", -- Detect tabstop and shiftwidth automatically
+	-- "tpope/vim-dadbod", -- database plugin?
+	"preservim/nerdtree", -- NerdTree plugin
 	"ryanoasis/vim-devicons",
 
 	-- NOTE: Plugins can also be added by using a table,
@@ -987,13 +987,24 @@ require("lazy").setup({
 
 	-- add airline theme
 	-- {
-	-- 	"vim-airline/vim-airline",
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- 	dependencies = {
-	-- 		"vim-airline/vim-airline-themes",
-	-- 	},
+	-- "vim-airline/vim-airline",
+	-- vim.g.airline_left_alt_sep = "",
+	-- vim.g.airline_right_sep = "",
+	-- vim.g.airline_right_alt_sep = "",
+	-- vim.g.airline_symbols = {},
+	-- vim.g.airline_symbols.branch = "",
+	-- vim.g.airline_symbols.readonly = "",
+	-- vim.g.airline_symbols.linenr = "",
+	-- vim.g.airline_section_b = '%{strftime("%H:%M")}',
+	-- vim.g["airline#extensions#tabline#buffer_idx_mode"] = 1,
+	-- vim.g["airline#extensions#tabline#enabled"] = 1,
+
+	-- 	vim.keymap.set("n", "<leader>1", "<Plug>AirlineSelectTab1>"),
+	-- 	vim.keymap.set("n", "<leader>2", "<Plug>AirlineSelectTab2>"),
+	-- 	vim.keymap.set("n", "<leader>3", "<Plug>AirlineSelectTab3"),
+	-- 	vim.keymap.set("n", "<leader>4", "<Plug>AirlineSelectTab4"),
 	-- },
+
 	-- add Markdown preview plugin by nvim
 	{
 		"iamcco/markdown-preview.nvim",

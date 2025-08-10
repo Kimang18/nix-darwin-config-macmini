@@ -30,7 +30,20 @@
   #  enable = true;
   #  extraConfig = builtins.readFile(./init.lua);
   #};
-  programs.neovim.enable = true;
+  programs.neovim = {
+    enable = true;
+    # plugins = with pkgs.vimPlugins; [
+    #   vim-airline
+    #   vim-airline-themes
+    # ];
+  };
+  #programs.ghostty = {
+  #  enable = true;
+  #  #shell = "${pkgs.tmux}/bin/tmux";
+  #  #settings = {
+  #  #  initial-command = "${pkgs.tmux}/bin/tmux"; # Or the path to your script
+  #  #};
+  #};
 
   # tmux setup
   programs.tmux = {
