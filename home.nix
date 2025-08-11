@@ -58,13 +58,16 @@
       catppuccin
       resurrect
       continuum
+      cpu
+      battery
     ];
     terminal = "screen-256color";
     extraConfig = ''
       set-option -g prefix C-q
       unbind-key C-q
       bind-key C-q send-prefix
-      set-option -g default-terminal 'screen-256color'
+      set -g mouse on
+      set-option -g default-terminal 'tmux-256color'
       set-option -g terminal-overrides ',xterm-256color:RGB'
       bind -n M-Left select-pane -L
       bind -n M-Right select-pane -R
@@ -73,31 +76,31 @@
       bind-key v split-window -h
       bind-key h split-window -v
       bind-key u split-window "aerospace focus --window-id $(aerospace list-windows --all | fzf --height 40% --color 'border:#ffa07a,info:#ffff00' --border | cut -d'|' -f1 | tr -d '[:blank:]')"
-      set -g mouse on
-      set-option -g status on
       bind -n S-Left previous-window
       bind -n S-Right next-window
       set -g renumber-windows "on"
       set -g @continuum-restore "on"
       set -g @resurrect-strategy-nvim 'session'
-      set -g @catppuccin_window_tabs_enabled on
-      set -g @catppuccin_window_left_separator ""
-      set -g @catppuccin_window_right_separator " "
-      set -g @catppuccin_window_middle_separator " █"
+      set -g @catppuccin_flavor "mocha"
+      set -g @catppuccin_window_status_style "rounded"
       set -g @catppuccin_window_number_position "right"
-      set -g @catppuccin_window_default_fill "number"
+      set -g @catppuccin_window_status "no"
       set -g @catppuccin_window_default_text "#W"
       set -g @catppuccin_window_current_fill "number"
-      set -g @catppuccin_window_current_text "#W#{?window_zoomed_flag,(),}"
-      set -g @catppuccin_status_modules_right "directory date_time"
-      set -g @catppuccin_status_modules_left "session"
-      set -g @catppuccin_status_left_separator  " "
-      set -g @catppuccin_status_right_separator " "
-      set -g @catppuccin_status_right_separator_inverse "no"
-      set -g @catppuccin_status_fill "icon"
-      set -g @catppuccin_status_connect_separator "no"
-      set -g @catppuccin_directory_text "#{b:pane_current_path}"
-      set -g @catppuccin_date_time_text "%H:%M"
+      set -g @catppuccin_window_current_text "#W"
+      set -g @catppuccin_window_left_separator "█"
+      set -g @catppuccin_window_middle_separator "█"
+      set -g @catppuccin_window_right_separator "█"
+      set -g @catppuccin_date_time_text "%d.%m. %H:%M"
+      set-option -g status on
+      set -g status-right-length 100
+      set -g status-left-length 100
+      set -g status-left "#{E:@catppuccin_status_session} "
+      set -g status-right "#{E:@catppuccin_status_application}"
+      set -agF status-right "#{E:@catppuccin_status_cpu}"
+      set -ag status-right "#{E:@catppuccin_status_uptime}"
+      set -ag status-right "#{E:@catppuccin_status_date_time}"
+      set -agF status-right "#{E:@catppuccin_status_battery}"
       set-window-option -g mode-keys vi
       bind-key -T copy-mode-vi v send -X begin-selection
       bind-key -T copy-mode-vi v send -X selection-line
