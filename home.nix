@@ -74,10 +74,11 @@
       bind-key h split-window -v
       bind-key u split-window "aerospace focus --window-id $(aerospace list-windows --all | fzf --height 40% --color 'border:#ffa07a,info:#ffff00' --border | cut -d'|' -f1 | tr -d '[:blank:]')"
       set -g mouse on
+      set-option -g status on
       bind -n S-Left previous-window
       bind -n S-Right next-window
-      set -g renumber-windows on
-      set -g @continuum-restore 'on'
+      set -g renumber-windows "on"
+      set -g @continuum-restore "on"
       set -g @resurrect-strategy-nvim 'session'
       set -g @catppuccin_window_tabs_enabled on
       set -g @catppuccin_window_left_separator ""

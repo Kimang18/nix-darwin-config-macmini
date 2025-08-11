@@ -133,7 +133,7 @@ automatically-unhide-macos-hidden-apps = true
     alt-shift-5 = 'move-node-to-workspace 5 --focus-follows-window'
     alt-shift-6 = 'move-node-to-workspace 6 --focus-follows-window'
     alt-shift-b = 'move-node-to-workspace B --focus-follows-window'
-    alt-shift-t = 'move-node-to-workspace T --focus-follows-window'
+    # alt-shift-t = 'move-node-to-workspace T --focus-follows-window'
     alt-f = 'fullscreen'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
@@ -156,8 +156,8 @@ automatically-unhide-macos-hidden-apps = true
     # app launching key bindings
     alt-s = 'exec-and-forget open -a /Applications/Safari.app'
     alt-m = 'exec-and-forget open -a /Applications/Microsoft\ Teams.app'
-    alt-g = 'exec-and-forget open -a /Applications/Nix Apps/Telegram.app'
-    alt-t = 'exec-and-forget open -a /Applications/Ghostty.app'
+    alt-t = 'exec-and-forget open -a /Applications/Nix Apps/Telegram.app'
+    alt-g = 'exec-and-forget open -a /Applications/Ghostty.app'
     alt-shift-f = 'exec-and-forget open $HOME/Documents/'
 
 
