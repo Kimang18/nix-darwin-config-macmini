@@ -1063,10 +1063,11 @@ require("lazy").setup({
 		opts = ...,
 	},
 	{
-		"hkupty/iron.nvim",
+		"Vigemus/iron.nvim",
 		config = function(plugins, opts)
 			local iron = require("iron.core")
 			local view = require("iron.view")
+			local common = require("iron.fts.common")
 
 			iron.setup({
 				config = {
@@ -1077,10 +1078,24 @@ require("lazy").setup({
 						python = {
 							-- Can be a table or a function that
 							-- returns a table (see below)
-							command = { "poetry", "run", "ipython", "--no-autoindent" },
-							format = require("iron.fts.common").bracketed_paste_python,
+							command = { "uv", "run", "ipython", "--no-autoindent" },
+							-- format = require("iron.fts.common").bracketed_paste_python,
+							format = function(lines, extras)
+								result = require("iron.fts.common").bracketed_paste_python(lines, extras)
+								filtered = vim.tbl_filter(function(line)
+									return not string.match(line, "^%s*#")
+								end, result)
+								return filtered
+							end,
+							block_dividers = { "# %%", "#%%" },
 						},
 					},
+					-- set the file type of the newly created repl to ft
+					-- bufnr is the buffer id of the REPL and ft is the filetype of the
+					-- language being used for the REPL.
+					repl_filetype = function(bufnr, ft)
+						return ft
+					end,
 					-- How the repl window will be displayed
 					-- See below for more information
 					-- repl_open_cmd = require("iron.view").right(120),
@@ -1089,16 +1104,22 @@ require("lazy").setup({
 				-- Iron doesn't set keymaps by default anymore.
 				-- You can set them here or manually add keymaps to the functions in iron.core
 				keymaps = {
-					send_motion = "<space>rc",
-					visual_send = "<space>rc",
-					send_file = "<space>rF",
-					send_line = "<space>rl",
-					send_mark = "<space>rm",
-					mark_motion = "<space>rmc",
-					mark_visual = "<space>rmc",
-					remove_mark = "<space>rmd",
+					send_motion = "<space>rsm",
+					visual_send = "<space>rsv",
+					send_file = "<space>rsf",
+					send_line = "<space>rsl",
+					send_paragraph = "<space>rsp",
+					send_until_cursor = "<space>rsu", -- run file [u]ntil cursor
+					--
+					send_code_block = "<space>rsb",
+					send_code_block_and_move = "<space>rsn",
+					--
+					-- send_mark = "<space>rm",
+					-- mark_motion = "<space>rmc",
+					-- mark_visual = "<space>rmc",
+					-- remove_mark = "<space>rmd",
 					cr = "<space>r<cr>",
-					interrupt = "<space>r<space>",
+					interrupt = "<space>r<pace>",
 					exit = "<space>rq",
 					clear = "<space>rx",
 				},
@@ -1230,6 +1251,10 @@ vim.api.nvim_create_autocmd("BufNewFile", {
 			"<++>",
 			"## Notes",
 			"<++>",
+			"## Schedule",
+			"| Time | Activity |",
+			"|------|----------|",
+			"|      |          |",
 		}
 		-- Get the current buffer number.
 		local bufnr = vim.api.nvim_get_current_buf()
