@@ -77,6 +77,7 @@
 	    #"webtorrent"
 	  "ghostty"
 	    #"ffmpeg"
+	  "google-drive"
 	];
         masApps = {
 	    #"Vimari" = 1480933944;

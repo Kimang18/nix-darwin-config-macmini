@@ -146,7 +146,8 @@ automatically-unhide-macos-hidden-apps = true
     alt-shift-ctrl-l = 'focus-monitor right'
     alt-shift-ctrl-h = 'focus-monitor left'
 
-    alt-shift-tab = 'focus-monitor --wrap-around prev'
+    # alt-shift-tab = 'focus-monitor --wrap-around prev'
+    alt-shift-tab = 'move-node-to-monitor --wrap-around next --focus-follows-window'
     alt-tab = 'focus-monitor --wrap-around next'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode

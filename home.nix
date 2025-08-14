@@ -84,15 +84,11 @@
       set -g @catppuccin_flavor "mocha"
       set -g @catppuccin_window_status_style "rounded"
       set -g @catppuccin_window_number_position "right"
-      set -g @catppuccin_window_status "no"
       set -g @catppuccin_window_default_text "#W"
       set -g @catppuccin_window_current_fill "number"
       set -g @catppuccin_window_current_text "#W"
-      set -g @catppuccin_window_left_separator "█"
-      set -g @catppuccin_window_middle_separator "█"
-      set -g @catppuccin_window_right_separator "█"
       set -g @catppuccin_date_time_text "%d.%m. %H:%M"
-      set-option -g status on
+
       set -g status-right-length 100
       set -g status-left-length 100
       set -g status-left "#{E:@catppuccin_status_session} "
@@ -146,6 +142,7 @@
     ".config/kitty/tokyonight_night.conf".source = ./kitty/tokyonight_night.conf;
     ".config/fish/functions/fish_prompt.fish".source = ./fish_prompt.fish;
     ".config/nvim/init.lua".source = ./init.lua;
+    # ".config/nvim/diary_template.md".source = ./diary_template.md;
     ".config/ghostty/config".source = ./ghostty.conf;
     ".config/zathura/zathurarc".source = ./zathura_configuration;
   };

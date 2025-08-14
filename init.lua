@@ -1134,6 +1134,32 @@ require("lazy").setup({
 			vim.g.vimtex_compiler_method = "latexrun"
 		end,
 	},
+	-- setup vimwiki
+	{
+		-- The plugin lcation on Github
+		"vimwiki/vimwiki",
+		-- The event that triggers the plugin
+		event = { "BufEnter *.md" },
+		-- The keys that triggering_source_returned_items the plugin
+		keys = { "<leader>ww", "<leader>wt" },
+		-- lazy = false, -- we don't want lazy to load vimtex
+		-- tag = "v1.15" -- uncomment to pin to a specific release
+		init = function()
+			-- VimTex configuration goes here, e.g.,
+			vim.g.vimwiki_list = {
+				{
+					path = "$HOME/Google Drive/Other computers/My Mac/vimwiki",
+					syntax = "markdown",
+					ext = ".md",
+				},
+				{ auto_diary_index = 1 },
+			}
+			vim.g.vimwiki_global_ext = 0
+			vim.g.vimwiki_filetypes = { "markdown" }
+			vim.g.vimwiki_diary_template = "$HOME/.config/nvim/diary_template.md"
+			vim.keymap.set("n", "<leader>tl", "<cmd>VimwikiToggleListItem<cr>")
+		end,
+	},
 }, {
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -1169,6 +1195,8 @@ vim.keymap.set("n", "<leader>nc", ":NERDTreeClose<CR>", { desc = "Close NERDTree
 vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to system clipboard" })
 vim.keymap.set("n", "<C-p>", '"+p', { desc = "Paste from system clipboard" })
 vim.keymap.set("n", "<C-P>", '"+P', { desc = "Paste from system clipboard" })
+vim.keymap.set("n", "<CR><CR>", "/<++><CR>c4l", { desc = "jump to placeholder tag" })
+-- vim.keymap.set("i", "<C-m>", "<++><Esc>", { desc = "put placeholder tag" })
 
 vim.cmd.colorscheme("catppuccin")
 
@@ -1180,5 +1208,32 @@ vim.api.nvim_create_autocmd("BufReadCmd", {
 		-- vim.cmd("! open -a Preview " .. filename .. " &")
 		vim.cmd("! zathura " .. filename .. " &")
 		vim.cmd("let tobedeleted = bufnr('%') | b# | exe \"bd! \" . tobedeleted")
+	end,
+})
+
+-- Open diary vimwiki with Preview
+vim.api.nvim_create_autocmd("BufNewFile", {
+	pattern = "*/diary/[0-9]*.md",
+	callback = function()
+		-- Get the current date and format it as desired.
+		local date_string = os.date("# %A, %B %d %Y")
+		-- Concatenate with the desired prefix.
+		local lines_to_insert = {
+			date_string,
+			"", -- An empty line for spacing
+			"## Daily checklist",
+			"",
+			"* [ ] <++>",
+			"* [ ] <++>",
+			"",
+			"## Todo",
+			"<++>",
+			"## Notes",
+			"<++>",
+		}
+		-- Get the current buffer number.
+		local bufnr = vim.api.nvim_get_current_buf()
+		-- Insert the line at the top of the file (line 0).
+		vim.api.nvim_buf_set_lines(bufnr, 0, 0, false, lines_to_insert)
 	end,
 })
