@@ -60,6 +60,7 @@
       homebrew = {
         enable = true;
 	brews = [
+	  "mpich"
 	  "portaudio"
 	   "zathura"
 	   "zathura-pdf-poppler"
