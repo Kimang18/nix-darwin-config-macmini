@@ -509,9 +509,9 @@ require("lazy").setup({
 					--
 					-- See :h blink-cmp-config-keymap for defining your own keymap
 					keymap = {
-						preset = "enter",
+						preset = "default",
 						-- ["<Shift-CR>"] = { "select_and_accept" },
-						-- ["<C-e>"] = false, -- disable C-e from active
+						["<C-e>"] = false, -- disable C-e from active
 						-- ["<C-y>"] = false, -- disable C-y from active
 						-- ["<C-n>"] = false, -- disable C-n from active
 						-- ["<C-p>"] = false, -- disable C-p from active
@@ -1216,8 +1216,8 @@ vim.keymap.set("n", "<leader>nc", ":NERDTreeClose<CR>", { desc = "Close NERDTree
 vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to system clipboard" })
 vim.keymap.set("n", "<C-p>", '"+p', { desc = "Paste from system clipboard" })
 vim.keymap.set("n", "<C-P>", '"+P', { desc = "Paste from system clipboard" })
-vim.keymap.set("n", "<CR><CR>", "/<++><CR>c4l", { desc = "jump to placeholder tag" })
--- vim.keymap.set("i", "<C-m>", "<++><Esc>", { desc = "put placeholder tag" })
+vim.keymap.set("n", "<Right><Right>", "/<++><CR>c4l", { desc = "jump to placeholder tag" })
+vim.keymap.set("i", "<Right><Right>", "<++><Esc>", { desc = "put placeholder tag" })
 
 vim.cmd.colorscheme("catppuccin")
 
