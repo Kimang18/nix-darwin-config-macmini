@@ -912,7 +912,7 @@ require("lazy").setup({
 			-- Load the colorscheme here.
 			-- Like many other themes, this one has different styles, and you could load
 			-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-			-- vim.cmd.colorscheme("tokyonight-night")
+			vim.cmd.colorscheme("tokyonight-night")
 
 			-- vim.o.background = "dark"
 			-- vim.cmd.colorscheme("gruvbox")
@@ -1219,7 +1219,8 @@ vim.keymap.set("n", "<C-P>", '"+P', { desc = "Paste from system clipboard" })
 vim.keymap.set("n", "<Right><Right>", "/<++><CR>c4l", { desc = "jump to placeholder tag" })
 vim.keymap.set("i", "<Right><Right>", "<++><Esc>", { desc = "put placeholder tag" })
 
-vim.cmd.colorscheme("catppuccin")
+-- vim.cmd.colorscheme("catppuccin")
+-- vim.cmd.colorscheme("tokyonight-night")
 
 -- Open pdf with Preview
 vim.api.nvim_create_autocmd("BufReadCmd", {

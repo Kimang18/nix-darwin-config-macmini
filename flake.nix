@@ -36,7 +36,7 @@
         vim
         tmux
 	kitty
-        poetry
+	# poetry
 	uv
 	mkalias
 	ffmpeg
@@ -60,10 +60,11 @@
       homebrew = {
         enable = true;
 	brews = [
+	  "markedit"
 	  "mpich"
 	  "portaudio"
-	   "zathura"
-	   "zathura-pdf-poppler"
+	  "zathura"
+	  "zathura-pdf-poppler"
 	];
 	taps = [
 	  "FelixKratz/formulae"
