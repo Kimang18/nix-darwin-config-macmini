@@ -60,7 +60,6 @@
       homebrew = {
         enable = true;
 	brews = [
-	  "markedit"
 	  "mpich"
 	  "portaudio"
 	  "zathura"
@@ -71,6 +70,7 @@
 	  "homebrew-zathura/zathura"
 	];
 	casks = [
+	  "markedit"
 	    # "kindavim" # it is paid
 	  "autodesk-fusion"
           "the-unarchiver"
