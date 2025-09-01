@@ -48,10 +48,10 @@
   # tmux setup
   programs.tmux = {
     enable = true;
-    shell = "${pkgs.fish}/bin/fish";
+    # shell = "${pkgs.fish}/bin/fish";
     #prefix = "C-q";
-    baseIndex = 1;
-    sensibleOnTop = false;
+    # baseIndex = 1;
+    # sensibleOnTop = false;
     plugins = with pkgs.tmuxPlugins; [
       vim-tmux-navigator
       #sensible
@@ -61,8 +61,9 @@
       cpu
       battery
     ];
-    terminal = "screen-256color";
+    # terminal = "screen-256color";
     extraConfig = ''
+      set -g default-command fish
       set-option -g prefix C-q
       unbind-key C-q
       bind-key C-q send-prefix
@@ -94,6 +95,7 @@
       set -g status-left "#{E:@catppuccin_status_session} "
       set -g status-right "#{E:@catppuccin_status_application}"
       set -agF status-right "#{E:@catppuccin_status_cpu}"
+      set -ag status-right "#S #[fg=#{@thm_fg},bg=#{@thm_mantle}] #(tmux-mem-cpu-load --colors --interval 2)#[default]"
       set -ag status-right "#{E:@catppuccin_status_uptime}"
       set -ag status-right "#{E:@catppuccin_status_date_time}"
       set -agF status-right "#{E:@catppuccin_status_battery}"
@@ -115,8 +117,8 @@
     shellAliases = {
       cfg-vim = "vim ~/nix/vim_configuration";
       cfg-nvim = "nvim ~/nix/init.lua";
-      cfg-tmux = "vim ~/nix/home.nix";
-      cfg-kit = "vim ~/nix/kitty_configuration";
+      cfg-tmux = "nvim ~/nix/home.nix";
+      cfg-kit = "nvim ~/nix/kitty_configuration";
       god = ''cd "$(find ~/Documents ~/Downloads ~/Desktop ~/Movies ~/Music ~/Pictures -type d | fzf --height 40% --color 'border:#ffa07a,info:#ffff00' --border )"'';
     };
     interactiveShellInit = ''

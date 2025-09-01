@@ -45,6 +45,7 @@
 	jankyborders
 	latexrun
 	texliveSmall
+	tmux-mem-cpu-load
       ];
 
       #environment.variables = {
