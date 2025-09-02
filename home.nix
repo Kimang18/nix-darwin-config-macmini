@@ -94,8 +94,7 @@
       set -g status-left-length 100
       set -g status-left "#{E:@catppuccin_status_session} "
       set -g status-right "#{E:@catppuccin_status_application}"
-      set -agF status-right "#{E:@catppuccin_status_cpu}"
-      set -ag status-right "#S #[fg=#{@thm_fg},bg=#{@thm_mantle}] #(tmux-mem-cpu-load --colors --interval 2)#[default]"
+      set -agF status-right "#{E:@catppuccin_status_cpu} #{tmux-mem-cpu-load | cut -d ' ' -f1}"
       set -ag status-right "#{E:@catppuccin_status_uptime}"
       set -ag status-right "#{E:@catppuccin_status_date_time}"
       set -agF status-right "#{E:@catppuccin_status_battery}"
