@@ -27,7 +27,7 @@
       environment.systemPackages = with pkgs; [
 	tree-sitter
 	nodejs_24
-	inkscape
+	# inkscape
 	telegram-desktop
 	htop
         fzf
@@ -81,6 +81,8 @@
 	  "ghostty"
 	    #"ffmpeg"
 	  "google-drive"
+	  "inkscape"
+	    # "microsoft-office" # 2019
 	];
         masApps = {
 	    #"Vimari" = 1480933944;
