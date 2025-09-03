@@ -267,7 +267,9 @@ require("lazy").setup({
 
 	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
 		"lewis6991/gitsigns.nvim",
-		vim.keymap.set("n", "<Leader>hp", ":Gitsigns preview_hunk<CR>"),
+		vim.keymap.set("n", "<Leader>hs", ":Gitsigns preview_hunk<CR>"),
+		vim.keymap.set("n", "<Leader>hn", ":Gitsigns next_hunk<CR>"),
+		vim.keymap.set("n", "<Leader>hp", ":Gitsigns prev_hunk<CR>"),
 		opts = {
 			signs = {
 				add = { text = "+" },
@@ -912,7 +914,7 @@ require("lazy").setup({
 			-- Load the colorscheme here.
 			-- Like many other themes, this one has different styles, and you could load
 			-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-			vim.cmd.colorscheme("tokyonight-night")
+			-- vim.cmd.colorscheme("tokyonight-night")
 
 			-- vim.o.background = "dark"
 			-- vim.cmd.colorscheme("gruvbox")
@@ -922,6 +924,7 @@ require("lazy").setup({
 		end,
 	},
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+	{ "rose-pine/neovim", name = "rose-pine", priority = 1000 },
 
 	-- Highlight todo, notes, etc in comments
 	{
@@ -1186,6 +1189,22 @@ require("lazy").setup({
 	{
 		"tpope/vim-fugitive",
 	},
+	-- setup smear-cursor
+	{
+		"sphamba/smear-cursor.nvim",
+		opts = {
+			-- smear cursor when switching buffers or window
+			smear_between_buffers = true,
+			-- smear cursor when moving within line or to neighbor lines.
+			smear_between_neighbor_lines = true,
+			-- draw the smear in buffer space instead of screen space when scrolling
+			scroll_buffer_space = true,
+			-- set to `true` if your font supports legacy computing symbols (block unicode symbols).
+			legacy_computing_symbols_support = true,
+			-- smear cursor in insert mode
+			smear_insert_mode = true,
+		},
+	},
 }, {
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -1226,6 +1245,7 @@ vim.keymap.set("i", "<Right><Right>", "<++><Esc>", { desc = "put placeholder tag
 
 -- vim.cmd.colorscheme("catppuccin")
 -- vim.cmd.colorscheme("tokyonight-night")
+vim.cmd.colorscheme("rose-pine")
 
 -- Open pdf with Preview
 vim.api.nvim_create_autocmd("BufReadCmd", {

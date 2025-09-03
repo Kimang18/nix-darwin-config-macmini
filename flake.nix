@@ -83,6 +83,7 @@
 	  "google-drive"
 	  "inkscape"
 	    # "microsoft-office" # 2019
+	  "audacity"
 	];
         masApps = {
 	    #"Vimari" = 1480933944;
