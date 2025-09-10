@@ -1081,7 +1081,7 @@ require("lazy").setup({
 						python = {
 							-- Can be a table or a function that
 							-- returns a table (see below)
-							command = { "uv", "run", "ipython", "--no-autoindent" },
+							command = { "uv", "run", "ipython", "--no-autoindent", "--no-confirm-exit" },
 							-- format = require("iron.fts.common").bracketed_paste_python,
 							format = function(lines, extras)
 								result = require("iron.fts.common").bracketed_paste_python(lines, extras)
@@ -1189,6 +1189,10 @@ require("lazy").setup({
 	{
 		"tpope/vim-fugitive",
 	},
+	-- setup plasticboy/vim-markdown
+	{
+		"plasticboy/vim-markdown",
+	},
 	-- setup smear-cursor
 	{
 		"sphamba/smear-cursor.nvim",
@@ -1204,6 +1208,39 @@ require("lazy").setup({
 			-- smear cursor in insert mode
 			smear_insert_mode = true,
 		},
+	},
+	-- setup transparent
+	{
+		"xiyaowong/transparent.nvim",
+		groups = {
+			"Normal",
+			"NormalNC",
+			"Comment",
+			"Constant",
+			"Special",
+			"Identifier",
+			"Statement",
+			"PreProc",
+			"Type",
+			"Underlined",
+			"Todo",
+			"String",
+			"Function",
+			"Conditional",
+			"Repeat",
+			"Operator",
+			"Structure",
+			"LineNr",
+			"NonText",
+			"SignColumn",
+			"CorsorLine",
+			"CursorLineNr",
+			"StatusLine",
+			"StatusLineNC",
+			"EndOfBuffer",
+		},
+		on_clear = function() end,
+		vim.keymap.set("n", "<leader>tt", "<cmd>TransparentToggle<cr>"),
 	},
 }, {
 	ui = {
@@ -1244,8 +1281,8 @@ vim.keymap.set("n", "<Right><Right>", "/<++><CR>c4l", { desc = "jump to placehol
 vim.keymap.set("i", "<Right><Right>", "<++><Esc>", { desc = "put placeholder tag" })
 
 -- vim.cmd.colorscheme("catppuccin")
--- vim.cmd.colorscheme("tokyonight-night")
-vim.cmd.colorscheme("rose-pine")
+vim.cmd.colorscheme("tokyonight-night")
+-- vim.cmd.colorscheme("rose-pine")
 
 -- Open pdf with Preview
 vim.api.nvim_create_autocmd("BufReadCmd", {

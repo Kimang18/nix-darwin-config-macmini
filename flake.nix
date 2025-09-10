@@ -46,6 +46,7 @@
 	latexrun
 	texliveSmall
 	tmux-mem-cpu-load
+	bundler
       ];
 
       #environment.variables = {
