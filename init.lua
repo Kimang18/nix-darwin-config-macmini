@@ -1279,6 +1279,8 @@ vim.keymap.set("n", "<C-p>", '"+p', { desc = "Paste from system clipboard" })
 vim.keymap.set("n", "<C-P>", '"+P', { desc = "Paste from system clipboard" })
 vim.keymap.set("n", "<Right><Right>", "/<++><CR>c4l", { desc = "jump to placeholder tag" })
 vim.keymap.set("i", "<Right><Right>", "<++><Esc>", { desc = "put placeholder tag" })
+vim.keymap.set("n", "j", "jzz", { noremap = true, silent = true })
+vim.keymap.set("n", "k", "kzz", { noremap = true, silent = true })
 
 -- vim.cmd.colorscheme("catppuccin")
 vim.cmd.colorscheme("tokyonight-night")

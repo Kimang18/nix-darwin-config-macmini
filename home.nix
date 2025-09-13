@@ -8,7 +8,7 @@
 
   # vim setup
   home.sessionVariables = {
-    EDITOR = "vim";
+    EDITOR = "nvim";
   };
   programs.vim = {
     enable = true;
@@ -32,11 +32,34 @@
   #};
   programs.neovim = {
     enable = true;
-    # plugins = with pkgs.vimPlugins; [
-    #   vim-airline
-    #   vim-airline-themes
-    # ];
   };
+  programs.yazi = {
+    enable = true;
+    settings = {
+      mgr = {
+        ratio = [
+          1
+          4
+          3
+        ];
+      };
+      keymap = {
+        mgr.append_keymap = [
+          {
+            on =[ "g" "p" ];
+            run = "cd ~/Documents/01_Projects/lora-demo/";
+            desc = "Go Lora Demo";
+          }
+        ];
+      };
+    };
+  };
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+    options = [ "--cmd cd" ];
+  };
+
   #programs.ghostty = {
   #  enable = true;
   #  #shell = "${pkgs.tmux}/bin/tmux";

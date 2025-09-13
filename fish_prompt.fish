@@ -33,6 +33,21 @@ set __fish_git_prompt_char_upstream_behind '👇 '
 set __fish_git_prompt_char_upstream_diverged '🚧 '
 set __fish_git_prompt_char_upstream_equal '💯 ' 
 
+set -l nix_shell_info (
+  if test -n "$IN_NIX_SHELL"
+    echo -n "<nix-shell> "
+  end
+)
+
+function y
+  set tmp (mktemp -t "yazi-cwd.XXXXXX")
+  yazi $argv --cwd-file="$tmp"
+  if read -z cwd < "$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+    builtin cd -- "$cwd"
+  end
+  rm -f -- "$tmp"
+end
+
 function fish_prompt
   set last_status $status
 

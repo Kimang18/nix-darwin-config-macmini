@@ -134,7 +134,7 @@ automatically-unhide-macos-hidden-apps = true
     alt-shift-6 = 'move-node-to-workspace 6 --focus-follows-window'
     alt-shift-b = 'move-node-to-workspace B --focus-follows-window'
     # alt-shift-t = 'move-node-to-workspace T --focus-follows-window'
-    alt-f = 'fullscreen'
+    alt-f = 'fullscreen --no-outer-gaps'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
     # alt-tab = 'workspace-back-and-forth'

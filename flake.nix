@@ -40,6 +40,8 @@
 	uv
 	mkalias
 	ffmpeg
+	yazi
+	zoxide
 	  # girara
 	aerospace
 	jankyborders
@@ -72,6 +74,8 @@
 	  "homebrew-zathura/zathura"
 	];
 	casks = [
+	    #"protonvpn"
+	    #"windscribe"
 	  "markedit"
 	    # "kindavim" # it is paid
 	  "autodesk-fusion"
