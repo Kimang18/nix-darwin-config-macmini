@@ -86,6 +86,7 @@
     ];
     # terminal = "screen-256color";
     extraConfig = ''
+      set-option -g status-position top
       set -g default-command fish
       set-option -g prefix C-q
       unbind-key C-q
@@ -122,12 +123,7 @@
       set -ag status-right "#{E:@catppuccin_status_uptime}"
       set -ag status-right "#{E:@catppuccin_status_date_time}"
       set -agF status-right "#{E:@catppuccin_status_battery}"
-      run ${pkgs.tmuxPlugins.catppuccin}/share/tmux-plugins/catppuccin/catppuccin.tmux
-      run-shell ${pkgs.tmuxPlugins.sensible}/share/tmux-plugins/sensible/sensible.tmux
-      run-shell ${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/resurrect.tmux
-      run-shell ${pkgs.tmuxPlugins.continuum}/share/tmux-plugins/continuum/continuum.tmux
       run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
-      run-shell ${pkgs.tmuxPlugins.battery}/share/tmux-plugins/battery/battery.tmux
       set-window-option -g mode-keys vi
       bind-key -T copy-mode-vi v send -X begin-selection
       bind-key -T copy-mode-vi v send -X selection-line

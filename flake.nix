@@ -89,6 +89,7 @@
 	  "inkscape"
 	    # "microsoft-office" # 2019
 	  "audacity"
+	  "obs"
 	];
         masApps = {
 	    #"Vimari" = 1480933944;
@@ -170,6 +171,7 @@
           AppleScrollerPagingBehavior = true; # jump to the spot that's clicked on the scroll bar
           AppleShowScrollBars = "Always";
           AppleTemperatureUnit = "Celsius";
+	  _HIHideMenuBar = true; # hide menu bar
         };
         WindowManager.GloballyEnabled = false;
         #universalaccess.reduceMotion = true;
