@@ -37,6 +37,7 @@
         tmux
 	kitty
 	# poetry
+	  # obs-studio
 	uv
 	mkalias
 	ffmpeg
