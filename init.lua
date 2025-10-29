@@ -193,11 +193,11 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower win
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- Terminal mode
-vim.keymap.set("t", "<esc>", "<C-\\><C-N>", { desc = "Exist to Normal mode in Terminal mode" })
-vim.keymap.set("t", "<C-h>", "<C-\\><C-N><C-w><C-h>", { desc = "Move focus to the left window" })
-vim.keymap.set("t", "<C-l>", "<C-\\><C-N><C-w><C-l>", { desc = "Move focus to the right window" })
-vim.keymap.set("t", "<C-j>", "<C-\\><C-N><C-w><C-j>", { desc = "Move focus to the lower window" })
-vim.keymap.set("t", "<C-k>", "<C-\\><C-N><C-w><C-k>", { desc = "Move focus to the upper window" })
+vim.keymap.set("t", "<esc>", "<C-[><C-N>", { desc = "Exist to Normal mode in Terminal mode" })
+vim.keymap.set("t", "<C-h>", "<C-[><C-N><C-w><C-h>", { desc = "Move focus to the left window" })
+vim.keymap.set("t", "<C-l>", "<C-[><C-N><C-w><C-l>", { desc = "Move focus to the right window" })
+vim.keymap.set("t", "<C-j>", "<C-[><C-N><C-w><C-j>", { desc = "Move focus to the lower window" })
+vim.keymap.set("t", "<C-k>", "<C-[><C-N><C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -1289,8 +1289,8 @@ vim.keymap.set("n", "<leader>nc", ":NERDTreeClose<CR>", { desc = "Close NERDTree
 vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copy to system clipboard" })
 vim.keymap.set("n", "<C-p>", '"+p', { desc = "Paste from system clipboard" })
 vim.keymap.set("n", "<C-P>", '"+P', { desc = "Paste from system clipboard" })
-vim.keymap.set("n", "<Right><Right>", "/<++><CR>c4l", { desc = "jump to placeholder tag" })
-vim.keymap.set("i", "<Right><Right>", "<++><Esc>", { desc = "put placeholder tag" })
+vim.keymap.set("n", "vv", '/<++><CR>"_c4l', { desc = "jump to placeholder tag" })
+vim.keymap.set("i", "vv", "<++><Esc>", { desc = "put placeholder tag" })
 vim.keymap.set("n", "j", "jzz", { noremap = true, silent = true })
 vim.keymap.set("n", "k", "kzz", { noremap = true, silent = true })
 
