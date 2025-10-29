@@ -193,11 +193,11 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower win
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- Terminal mode
-vim.keymap.set("t", "<esc>", "<C-[><C-N>", { desc = "Exist to Normal mode in Terminal mode" })
-vim.keymap.set("t", "<C-h>", "<C-[><C-N><C-w><C-h>", { desc = "Move focus to the left window" })
-vim.keymap.set("t", "<C-l>", "<C-[><C-N><C-w><C-l>", { desc = "Move focus to the right window" })
-vim.keymap.set("t", "<C-j>", "<C-[><C-N><C-w><C-j>", { desc = "Move focus to the lower window" })
-vim.keymap.set("t", "<C-k>", "<C-[><C-N><C-w><C-k>", { desc = "Move focus to the upper window" })
+vim.keymap.set("t", "<esc>", "<C-\\><C-N>", { desc = "Exist to Normal mode in Terminal mode" })
+vim.keymap.set("t", "<C-h>", "<C-\\><C-N><C-w><C-h>", { desc = "Move focus to the left window" })
+vim.keymap.set("t", "<C-l>", "<C-\\><C-N><C-w><C-l>", { desc = "Move focus to the right window" })
+vim.keymap.set("t", "<C-j>", "<C-\\><C-N><C-w><C-j>", { desc = "Move focus to the lower window" })
+vim.keymap.set("t", "<C-k>", "<C-\\><C-N><C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -259,10 +259,18 @@ require("lazy").setup({
 	-- Add nvim-tmux-navigator
 	{
 		"christoomey/vim-tmux-navigator",
-		vim.keymap.set("n", "C-h", ":TmuxNavigateLeft<CR>"),
-		vim.keymap.set("n", "C-l", ":TmuxNavigateRight<CR>"),
-		vim.keymap.set("n", "C-k", ":TmuxNavigateUp<CR>"),
-		vim.keymap.set("n", "C-j", ":TmuxNavigateDown<CR>"),
+		cmd = {
+			"TmuxNavigateLeft",
+			"TmuxNavigateRight",
+			"TmuxNavigateUp",
+			"TmuxNavigateDown",
+		},
+		keys = {
+			{ "C-h", "<cmd><C-U>TmuxNavigateLeft<CR>" },
+			{ "C-l", "<cmd><C-U>TmuxNavigateRight<CR>" },
+			{ "C-k", "<cmd><C-U>TmuxNavigateUp<CR>" },
+			{ "C-j", "<cmd><C-U>TmuxNavigateDown<CR>" },
+		},
 	},
 
 	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
