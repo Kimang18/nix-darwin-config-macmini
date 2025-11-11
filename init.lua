@@ -1303,8 +1303,8 @@ vim.keymap.set("n", "j", "jzz", { noremap = true, silent = true })
 vim.keymap.set("n", "k", "kzz", { noremap = true, silent = true })
 
 -- vim.cmd.colorscheme("catppuccin")
-vim.cmd.colorscheme("tokyonight-night")
--- vim.cmd.colorscheme("rose-pine")
+-- vim.cmd.colorscheme("tokyonight-night")
+vim.cmd.colorscheme("rose-pine")
 
 -- Open pdf with Preview
 vim.api.nvim_create_autocmd("BufReadCmd", {
@@ -1329,8 +1329,8 @@ vim.api.nvim_create_autocmd("BufNewFile", {
 			"", -- An empty line for spacing
 			"## Daily checklist",
 			"",
-			"* [ ] <++>",
-			"* [ ] <++>",
+			"* [ ] read book for 10 minutes",
+			"* [ ] learn 1 new thing:",
 			"",
 			"## Todo",
 			"<++>",

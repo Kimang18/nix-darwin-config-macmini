@@ -50,6 +50,7 @@
 	texliveSmall
 	tmux-mem-cpu-load
 	bundler
+	wget
       ];
 
       #environment.variables = {
