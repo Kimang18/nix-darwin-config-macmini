@@ -10,6 +10,7 @@
       # url = "github:LnL7/nix-darwin";
       url = "github:nix-darwin/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nix-darwin.follows = "darwin";
     };
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
       home-manager = {
@@ -108,7 +109,7 @@
       	env = pkgs.buildEnv {
 	  name = "system-applications";
 	  paths = config.environment.systemPackages;
-	  pathsToLink = "/Applications";
+	  pathsToLink = ["/Applications"];
 	};
       in
       	pkgs.lib.mkForce ''
