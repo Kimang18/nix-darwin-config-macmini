@@ -4,7 +4,15 @@
   home.stateVersion = "23.05";
   # Let home-manager install and manage itself.
   programs.home-manager.enable = true;
-  home.packages = with pkgs; [ ];
+  home.packages = with pkgs; [
+    (pkgs.python3.withPackages (ppkgs: [
+      ppkgs.numpy
+      ppkgs.matplotlib
+      ppkgs.ipython
+      ppkgs.jupyter
+      ppkgs.pyyaml
+    ]))
+  ];
 
   # vim setup
   home.sessionVariables = {
