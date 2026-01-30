@@ -52,7 +52,15 @@
 	tmux-mem-cpu-load
 	bundler
 	wget
+	(python3.withPackages (ps: with ps; [
+	    numpy
+	    jupyter-all
+	    pyyaml
+	    quarto
+	]))
+	quarto
       ];
+      environment.variables.QUARTO_PYTHON = "${pkgs.python3}/bin/python3";
 
       #environment.variables = {
       #  TERMINFO_DIRS = "${pkgs.kitty.terminfo.outPath}/share/terminfo";
@@ -84,19 +92,19 @@
 	  "autodesk-fusion"
           "the-unarchiver"
           "vlc"
-	  "bambu-studio"
+	    #"bambu-studio"
 	    #"webtorrent"
 	  "ghostty"
 	    #"ffmpeg"
 	  "google-drive"
 	  "inkscape"
-	    # "microsoft-office" # 2019
+	  "microsoft-office" # 2019
 	  "audacity"
 	  "obs"
 	];
         masApps = {
-	    #"Vimari" = 1480933944;
-          "Menu Bar Calendar" = 1558360383;
+	    # "Vimari" = 1480933944;
+	    # "Menu Bar Calendar" = 1558360383;
           "MonitorControlLite" = 1595464182;
         };
 	onActivation.cleanup = "zap";

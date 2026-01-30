@@ -256,6 +256,36 @@ require("lazy").setup({
 	--
 	-- See `:help gitsigns` to understand what the configuration keys do
 
+	-- Add Quarto
+	{
+		"quarto-dev/quarto-nvim",
+		dependencies = {
+			"jmbuhr/otter.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			require("quarto").setup({
+				lspFeatures = {
+					enabled = true,
+					languages = { "r", "python", "julia" },
+					diagnostics = {
+						enabled = true,
+						triggers = { "BufWrite" },
+					},
+					completion = {
+						enabled = true,
+					},
+				},
+			})
+		end,
+	},
+	-- send code from python/r/qmd documents to a terminal
+	-- like ipython, R, bash
+	{ "jpalardy/vim-slime" },
+	-- paste an image to markdown from the clipboard
+	-- with :PasteImg
+	{ "ekickx/clipboard-image.nvim" },
+
 	-- Add nvim-tmux-navigator
 	{
 		"christoomey/vim-tmux-navigator",
