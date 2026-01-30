@@ -166,7 +166,7 @@ vim.opt.scrolloff = 20
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Diagnostic keymaps
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+vim.keymap.set("n", "<leader>Q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -211,6 +211,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
 		vim.highlight.on_yank()
 	end,
+})
+
+-- Create an autocommand for "BufRead" events
+vim.filetype.add({
+	extension = {
+		qmd = "python",
+	},
 })
 
 -- [[ Install `lazy.nvim` plugin manager ]]
@@ -263,6 +270,7 @@ require("lazy").setup({
 			"jmbuhr/otter.nvim",
 			"nvim-treesitter/nvim-treesitter",
 		},
+		vim.keymap.set("n", "<Leader>q", ":QuartoPreview<CR>"),
 		config = function()
 			require("quarto").setup({
 				lspFeatures = {
