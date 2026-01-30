@@ -52,19 +52,13 @@
 	tmux-mem-cpu-load
 	bundler
 	wget
-	(python3.withPackages (ps: with ps; [
-	    numpy
-	    jupyter-all
-	    pyyaml
-	    quarto
-	]))
 	quarto
       ];
-      environment.variables.QUARTO_PYTHON = "${pkgs.python3}/bin/python3";
 
-      #environment.variables = {
+      environment.variables = {
       #  TERMINFO_DIRS = "${pkgs.kitty.terminfo.outPath}/share/terminfo";
-      #};
+	  QUARTO_PYTHON = "/etc/profiles/per-user/kimangkhun/bin/python3.13";
+      };
 
       fonts.packages = [
 	  pkgs.nerd-fonts.jetbrains-mono
@@ -153,9 +147,8 @@
 	    mru-spaces = false;
 	    persistent-apps = [
 	      "${pkgs.kitty}/Applications/Kitty.app"
+	      "/Applications/Nix Apps/Telegram.app"
 	      "/Applications/Safari.app"
-	      "/Applications/BambuStudio.app"
-	      "/System/Applications/Launchpad.app"
 	      "/System/Applications/Calendar.app"
 	      "/System/Applications/Mail.app"
 	    ];
@@ -182,7 +175,7 @@
           AppleScrollerPagingBehavior = true; # jump to the spot that's clicked on the scroll bar
           AppleShowScrollBars = "Always";
           AppleTemperatureUnit = "Celsius";
-	  _HIHideMenuBar = true; # hide menu bar
+	  _HIHideMenuBar = false; # hide menu bar
         };
         WindowManager.GloballyEnabled = false;
         #universalaccess.reduceMotion = true;
