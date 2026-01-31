@@ -214,11 +214,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Create an autocommand for "BufRead" events
-vim.filetype.add({
-	extension = {
-		qmd = "python",
-	},
-})
+-- vim.filetype.add({
+-- 	extension = {
+-- 		qmd = "python",
+-- 	},
+-- })
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -1339,6 +1339,20 @@ vim.keymap.set("n", "vv", '/<++><CR>"_c4l', { desc = "jump to placeholder tag" }
 vim.keymap.set("i", "vv", "<++><Esc>", { desc = "put placeholder tag" })
 vim.keymap.set("n", "j", "jzz", { noremap = true, silent = true })
 vim.keymap.set("n", "k", "kzz", { noremap = true, silent = true })
+vim.keymap.set("v", "(", "c()<Esc>hpl", { desc = "Surround by parenthesis" })
+vim.keymap.set("v", "[", "c[]<Esc>hpl", { desc = "Surround by squared brackets" })
+vim.keymap.set("v", "{", "c{}<Esc>hpl", { desc = "Surround by curly brackets" })
+vim.keymap.set("v", "'", "c''<Esc>hpl", { desc = "Surround by apostrophes" })
+vim.keymap.set("v", "_", "c__<Esc>hpl", { desc = "Surround by apostrophes" })
+vim.keymap.set("v", "$", "c$$<Esc>hpl", { desc = "Surround by math symbol" })
+
+-- QMD keybinding
+vim.keymap.set("i", "``", "$<++>$<Esc>", { desc = "put math placeholder tag" })
+vim.keymap.set("i", "`p", "```{python}<CR><++><CR>```<Esc>", { desc = "put python placeholder tag" })
+vim.keymap.set("i", ";bg", "\\begin{<++>}<CR><CR>\\end{<++>}<Esc>", { desc = "put begin tag" })
+vim.keymap.set("i", ";bf", "\\textbf{<++>}<Esc>", { desc = "put begin tag" })
+vim.keymap.set("i", ";mcal", "\\mathcal{<++>}<Esc>", { desc = "put math caligraphy" })
+vim.keymap.set("i", ";mbb", "\\mathbb{<++>}<Esc>", { desc = "put math with double ||" })
 
 -- vim.cmd.colorscheme("catppuccin")
 -- vim.cmd.colorscheme("tokyonight-night")
