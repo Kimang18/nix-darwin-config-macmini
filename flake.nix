@@ -175,7 +175,7 @@
           AppleScrollerPagingBehavior = true; # jump to the spot that's clicked on the scroll bar
           AppleShowScrollBars = "Always";
           AppleTemperatureUnit = "Celsius";
-	  _HIHideMenuBar = false; # hide menu bar
+	  _HIHideMenuBar = true; # hide menu bar
         };
         WindowManager.GloballyEnabled = false;
         #universalaccess.reduceMotion = true;
