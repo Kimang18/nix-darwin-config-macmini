@@ -33,6 +33,20 @@
     ];
   }; 
 
+programs.vscode = {
+    enable = true;
+    extensions = with pkgs.vscode-extensions; [
+      # quarto.quarto
+      mvllow.rose-pine
+      vscodevim.vim
+      ms-python.python
+      ms-toolsai.jupyter
+    ];
+    userSettings = {
+      "quarto.render.renderOnSave" = true;
+    };
+  };
+
   # neovim setup but not working yet
   #programs.neovim = {
   #  enable = true;

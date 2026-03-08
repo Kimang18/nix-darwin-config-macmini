@@ -23,6 +23,8 @@
   let
     configuration = { pkgs, config, ... }: {
 
+	nixpkgs.config.allowUnfree = true;
+
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs; [
@@ -51,6 +53,9 @@
 	texliveSmall
 	tmux-mem-cpu-load
 	bundler
+	  # jekyll
+	  #rubyPackages.jekyll-feed
+	rubyPackages.github-pages
 	wget
 	quarto
       ];
@@ -89,7 +94,7 @@
 	    #"bambu-studio"
 	    #"webtorrent"
 	  "ghostty"
-	    #"ffmpeg"
+	    # "ffmpeg"
 	  "google-drive"
 	  "inkscape"
 	  "microsoft-office" # 2019

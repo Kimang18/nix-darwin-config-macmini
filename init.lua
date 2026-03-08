@@ -1344,7 +1344,7 @@ vim.keymap.set("v", "[", "c[]<Esc>hpl", { desc = "Surround by squared brackets" 
 vim.keymap.set("v", "{", "c{}<Esc>hpl", { desc = "Surround by curly brackets" })
 vim.keymap.set("v", "'", "c''<Esc>hpl", { desc = "Surround by apostrophes" })
 vim.keymap.set("v", "_", "c__<Esc>hpl", { desc = "Surround by apostrophes" })
-vim.keymap.set("v", "$", "c$$<Esc>hpl", { desc = "Surround by math symbol" })
+-- vim.keymap.set("v", "$", "c$$<Esc>hpl", { desc = "Surround by math symbol" })
 
 -- QMD keybinding
 vim.keymap.set("i", "``", "$<++>$<Esc>", { desc = "put math placeholder tag" })
@@ -1357,6 +1357,17 @@ vim.keymap.set("i", ";mbb", "\\mathbb{<++>}<Esc>", { desc = "put math with doubl
 -- vim.cmd.colorscheme("catppuccin")
 -- vim.cmd.colorscheme("tokyonight-night")
 vim.cmd.colorscheme("rose-pine")
+
+-- Enable list mode to show invisible characters
+vim.opt.list = true
+
+-- Define how those characters should look
+-- In Lua, we use a table-like string or a simple string
+vim.opt.listchars = {
+	tab = "| ",
+	trail = "-",
+	nbsp = "+",
+}
 
 -- Open pdf with Preview
 vim.api.nvim_create_autocmd("BufReadCmd", {
