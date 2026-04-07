@@ -43,7 +43,7 @@
 	  # obs-studio
 	uv
 	mkalias
-	ffmpeg
+	  # ffmpeg
 	yazi
 	zoxide
 	  # girara
@@ -58,6 +58,9 @@
 	rubyPackages.github-pages
 	wget
 	quarto
+	opencode
+	zathura
+	zathuraPkgs.zathura_pdf_poppler
       ];
 
       environment.variables = {
@@ -74,27 +77,27 @@
       homebrew = {
         enable = true;
 	brews = [
+	  "ffmpeg"
 	  "mpich"
 	  "portaudio"
-	  "zathura"
-	  "zathura-pdf-poppler"
+	    # "zathura"
+	    # "zathura-pdf-poppler"
 	];
-	taps = [
-	  "FelixKratz/formulae"
-	  "homebrew-zathura/zathura"
-	];
+	  # taps = [
+	    # "FelixKratz/formulae"
+	    # "homebrew-zathura/zathura"
+	  # ];
 	casks = [
 	    #"protonvpn"
 	    #"windscribe"
 	  "markedit"
 	    # "kindavim" # it is paid
-	  "autodesk-fusion"
+	    # "autodesk-fusion"
           "the-unarchiver"
           "vlc"
 	    #"bambu-studio"
 	    #"webtorrent"
 	  "ghostty"
-	    # "ffmpeg"
 	  "google-drive"
 	  "inkscape"
 	  "microsoft-office" # 2019
