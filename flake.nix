@@ -80,6 +80,7 @@
 	  "ffmpeg"
 	  "mpich"
 	  "portaudio"
+	  "pi-coding-agent"
 	    # "zathura"
 	    # "zathura-pdf-poppler"
 	];
