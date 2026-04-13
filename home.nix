@@ -40,11 +40,11 @@ programs.vscode = {
       mvllow.rose-pine
       vscodevim.vim
       ms-python.python
-      ms-toolsai.jupyter
+      # ms-toolsai.jupyter
     ];
-    userSettings = {
-      "quarto.render.renderOnSave" = true;
-    };
+    # userSettings = {
+    #   "quarto.render.renderOnSave" = true;
+    # };
   };
 
   # neovim setup but not working yet
