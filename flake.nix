@@ -7,10 +7,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin = {
       # url = "github:nix-darwin/nix-darwin/NIX-DARWIN-BRANCH";
-      # url = "github:LnL7/nix-darwin";
-      url = "github:nix-darwin/nix-darwin";
+      url = "github:LnL7/nix-darwin";
+      # url = "github:nix-darwin/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nix-darwin.follows = "darwin";
+      # inputs.nix-darwin.follows = "darwin";
     };
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
       home-manager = {
@@ -28,7 +28,7 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs; [
-	tree-sitter
+	# tree-sitter
 	nodejs_24
 	# inkscape
 	telegram-desktop
@@ -59,8 +59,7 @@
 	wget
 	quarto
 	opencode
-	zathura
-	zathuraPkgs.zathura_pdf_poppler
+	google-chrome
       ];
 
       environment.variables = {
@@ -71,18 +70,19 @@
       fonts.packages = [
 	  pkgs.nerd-fonts.jetbrains-mono
 	  pkgs.nerd-fonts.fira-code
-	  # (pkgs.nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
       ];
 
       homebrew = {
         enable = true;
 	brews = [
+	  "mas"
+	  "macmon"
 	  "ffmpeg"
 	  "mpich"
 	  "portaudio"
 	  "pi-coding-agent"
-	    # "zathura"
-	    # "zathura-pdf-poppler"
+	  "zathura"
+	  "zathura-pdf-poppler"
 	];
 	  # taps = [
 	    # "FelixKratz/formulae"
@@ -108,12 +108,22 @@
         masApps = {
 	    # "Vimari" = 1480933944;
 	    # "Menu Bar Calendar" = 1558360383;
-          "MonitorControlLite" = 1595464182;
+          # "MonitorControlLite" = 1595464182;
         };
 	onActivation.cleanup = "zap";
 	onActivation.autoUpdate = true;
 	onActivation.upgrade = true;
       };
+
+      # configure ssl
+      system.activationScripts."ssl-ca-cert-fix".text = ''
+        if [ ! -f /etc/nix/ca_cert.pem ]; then
+          security export -t certs -f pemseq -k /Library/Keychains/System.keychain -o /tmp/certs-system.pem
+          security export -t certs -f pemseq -k /System/Library/Keychains/SystemRootCertificates.keychain -o /tmp/certs-root.pem
+          cat /tmp/certs-root.pem /tmp/certs-system.pem > /tmp/ca_cert.pem
+          sudo mv /tmp/ca_cert.pem /etc/nix/
+        fi
+      '';
 
       # configure to allow search for applications installed by Nix
       system.activationScripts.applications.text = let
@@ -184,7 +194,7 @@
           AppleScrollerPagingBehavior = true; # jump to the spot that's clicked on the scroll bar
           AppleShowScrollBars = "Always";
           AppleTemperatureUnit = "Celsius";
-	  _HIHideMenuBar = true; # hide menu bar
+	  _HIHideMenuBar = false; # hide menu bar
         };
         WindowManager.GloballyEnabled = false;
         #universalaccess.reduceMotion = true;
@@ -199,7 +209,10 @@
 
       };
       # Necessary for using flakes on this system.
-      nix.settings.experimental-features = "nix-command flakes";
+      nix.settings = {
+        experimental-features = "nix-command flakes";
+        ssl-cert-file = "/etc/nix/ca_cert.pem";
+      };
 
       # Enable alternative shell support in nix-darwin.
       #programs.fish.enable = true;
