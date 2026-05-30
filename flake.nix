@@ -43,7 +43,7 @@
 	  # obs-studio
 	uv
 	mkalias
-	  # ffmpeg
+	ffmpeg
 	yazi
 	zoxide
 	  # girara
@@ -77,7 +77,7 @@
 	brews = [
 	  "mas"
 	  "macmon"
-	  "ffmpeg"
+	  # "ffmpeg"
 	  "mpich"
 	  "portaudio"
 	  "pi-coding-agent"
