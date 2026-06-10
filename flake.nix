@@ -25,9 +25,20 @@
 
 	nixpkgs.config.allowUnfree = true;
 	# nixpkgs.config.allowUnsupportedSystem = true;
+	nixpkgs.overlays = [
+	  (final: prev: {
+	    patchedQuarto = prev.quarto.overrideAttrs (oldAttrs: {
+	      postPatch = (oldAttrs.postPatch or "") + ''
+		substituteInPlace bin/quarto.js \
+		  --replace-fail "syntax-highlighting" "highlight-style"
+	      '';
+	    });
+	  })
+	];
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs; [
+	patchedQuarto
 	# tree-sitter
 	nodejs_24
 	# inkscape
@@ -241,21 +252,21 @@
     darwinConfigurations."macmini" = nix-darwin.lib.darwinSystem {
       modules = [
         configuration
-	  home-manager.darwinModules.home-manager {
-	    home-manager.useGlobalPkgs = true;
-	    home-manager.useUserPackages = true;
-	    home-manager.verbose = true;
-	    home-manager.users.kimangkhun = import ./home.nix;
-	  }
-	  nix-homebrew.darwinModules.nix-homebrew {
-	    nix-homebrew = {
-	      enable = true;
-	      # Apple Silicon only
-	      enableRosetta = true;
-	      # User owning the Homebrew prefix
-	      user = "kimangkhun";
-	    };
-	  }
+	home-manager.darwinModules.home-manager {
+	  home-manager.useGlobalPkgs = true;
+	  home-manager.useUserPackages = true;
+	  home-manager.verbose = true;
+	  home-manager.users.kimangkhun = import ./home.nix;
+	}
+	nix-homebrew.darwinModules.nix-homebrew {
+	  nix-homebrew = {
+	    enable = true;
+	    # Apple Silicon only
+	    enableRosetta = true;
+	    # User owning the Homebrew prefix
+	    user = "kimangkhun";
+	  };
+	}
       ];
     };
 
