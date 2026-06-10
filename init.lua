@@ -1410,3 +1410,4 @@ vim.api.nvim_create_autocmd("BufNewFile", {
 		vim.api.nvim_buf_set_lines(bufnr, 0, 0, false, lines_to_insert)
 	end,
 })
+vim.keymap.del("n", "s")
