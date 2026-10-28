@@ -294,6 +294,13 @@ require("lazy").setup({
 	-- with :PasteImg
 	{ "ekickx/clipboard-image.nvim" },
 
+	-- Add autopairs
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true,
+	},
+
 	-- Add nvim-tmux-navigator
 	{
 		"christoomey/vim-tmux-navigator",
