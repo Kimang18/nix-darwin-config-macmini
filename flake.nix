@@ -39,9 +39,8 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs; [
 	patchedQuarto
-	# tree-sitter
+	tree-sitter
 	nodejs_24
-	# inkscape
 	telegram-desktop
 	htop
         fzf
@@ -51,7 +50,6 @@
         tmux
 	kitty
 	# poetry
-	  # obs-studio
 	uv
 	mkalias
 	ffmpeg
@@ -92,17 +90,12 @@
 	  "mpich"
 	  "portaudio"
 	  "pi-coding-agent"
-	  "zathura"
-	  "zathura-pdf-poppler"
 	];
-	  # taps = [
-	    # "FelixKratz/formulae"
-	    # "homebrew-zathura/zathura"
-	  # ];
 	casks = [
 	    #"protonvpn"
 	    #"windscribe"
 	  "markedit"
+	  "llama-app"
 	    # "kindavim" # it is paid
 	    # "autodesk-fusion"
           "the-unarchiver"
