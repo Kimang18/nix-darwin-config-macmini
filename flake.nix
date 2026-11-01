@@ -46,6 +46,8 @@
         fzf
         fish
         neovim
+	ripgrep # dependency for telescope in neovim
+	fd # dpendency for telescope in neovim
         vim
         tmux
 	kitty
