@@ -759,6 +759,24 @@ require("lazy").setup({
 				-- 		},
 				-- 	},
 				-- },
+				pylsp = {
+					-- force setting in vim below
+					-- settings = {
+					-- 	pylsp = {
+					-- 		plugins = {
+					-- 			pyflakes = { enabled = false},
+					-- 			pycodestyle = { enabled = false},
+					-- 			autopep8 = { enabled = false},
+					-- 			yapf = { enabled = false},
+					-- 			mccabe = { enabled = false},
+					-- 			pylint = { enabled = false },
+					-- 			-- pylsp_mypy = { enabled = false},
+					-- 			-- pylsp_black = { enabled = false},
+					-- 			-- pylsp_isort = { enabled = false},
+					-- 		},
+					-- 	},
+					-- },
+				},
 
 				lua_ls = {
 					-- cmd = {...},
@@ -828,12 +846,15 @@ require("lazy").setup({
 			local sources = {
 				require("none-ls.formatting.ruff").with({ extra_args = { "--extend-select", "I" } }),
 				require("none-ls.formatting.ruff_format"),
-				null_ls.builtins.formatting.prettier.with({ filetypes = { "json", "yaml", "markdown" } }),
+				null_ls.builtins.formatting.prettier.with({ filetypes = { "json", "markdown" } }),
 				null_ls.builtins.formatting.shfmt.with({ args = { "-i", "4" } }),
 			}
 
 			local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 			null_ls.setup({
+				on_init = function(client)
+					client.offset_encoding = "utf-16"
+				end,
 				sources = sources,
 				on_attach = function(client, bufnr)
 					if client:supports_method("textDocument/formatting") then
@@ -1387,6 +1408,41 @@ vim.api.nvim_create_autocmd('FileType', {
   callback = function(args)
     vim.treesitter.start(args.buf)
   end,
+})
+
+-- Prepare pylsp to avoid conflict with ruff
+vim.lsp.config('pylsp', {
+	settings = {
+		pylsp = {
+			plugins = {
+				pyflakes = { enabled = false},
+				pycodestyle = { enabled = false},
+				autopep8 = { enabled = false},
+				yapf = { enabled = false},
+				mccabe = { enabled = false},
+				pylsp_mypy = { enabled = false},
+				pylsp_black = { enabled = false},
+				pylsp_isort = { enabled = false},
+			},
+		},
+	},
+})
+
+-- set encoding utf-16 on ruff
+vim.lsp.config('ruff', {
+	capabilities = {
+		general = { positionEncodings = { 'utf-16' } },
+	},
+})
+
+-- avoid ruff/pylsp hover clash
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function (args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if client and client.name == "ruff" then
+			client.server_capabilities.hoverProvider = false
+		end
+	end,
 })
 
 -- Define how those characters should look
