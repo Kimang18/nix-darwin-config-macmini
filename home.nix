@@ -62,7 +62,7 @@
 
 programs.vscode = {
     enable = true;
-    extensions = with pkgs.vscode-extensions; [
+    profiles.default.extensions = with pkgs.vscode-extensions; [
       # quarto.quarto
       mvllow.rose-pine
       vscodevim.vim
@@ -131,6 +131,7 @@ programs.vscode = {
     extraConfig = ''
       set-option -g status-position top
       set -g default-command fish
+      set -g extended-keys on
       set-option -g prefix C-q
       unbind-key C-q
       bind-key C-q send-prefix
@@ -197,11 +198,11 @@ programs.vscode = {
   };
 
   # git setup
-  programs.git = {
-    enable = true;
-    userName = "Kimang18";
-    userEmail = "allenkhun22@gmail.com";
-    ignores = [ ".DS_Store" ];
-  };
+  # programs.git = {
+  #   enable = true;
+  #   userName = "Kimang18";
+  #   userEmail = "allenkhun22@gmail.com";
+  #   ignores = [ ".DS_Store" ];
+  # };
 
 }
