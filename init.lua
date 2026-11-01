@@ -334,6 +334,14 @@ require("lazy").setup({
 		},
 	},
 
+	{ -- add trail line plugin
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		---@module "ibl"
+		---@type ibl.config
+		opts = {},
+	},
+
 	-- NOTE: Plugins can also be configured to run Lua code when they are loaded.
 	--
 	-- This is often very useful to both group configuration, as well as handle
@@ -1447,11 +1455,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- Define how those characters should look
 -- In Lua, we use a table-like string or a simple string
-vim.opt.listchars = {
-	tab = "| ",
-	trail = "-",
-	nbsp = "+",
-}
+-- vim.opt.listchars = {
+-- 	tab = "| ",
+-- 	trail = "-",
+-- 	nbsp = "+",
+-- }
 
 -- Open pdf with Preview
 vim.api.nvim_create_autocmd("BufReadCmd", {
